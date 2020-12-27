@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 //import {useState} from 'react'
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person'
 //import Radium, { StyleRoot } from 'radium'
-import styled from 'styled-components'
+//import styled from 'styled-components'
 
 
 // const StyledButton = styled.button`
@@ -79,6 +79,7 @@ class App extends Component {
 
   render() {
 
+    let btnClass = '';
     // const style = {
     //   backgroundColor: 'green',
     //   font: 'inherit',
@@ -124,7 +125,8 @@ class App extends Component {
             age={this.state.persons[2].age} /> */}
         </div>
       );
-
+      
+      btnClass = classes.Red;
       // style.backgroundColor = 'red';
       // style[':hover'] = {
       //   backgroundColor: 'salmon',
@@ -133,20 +135,23 @@ class App extends Component {
 
     }
 
-    const classes = [];
+    const assinedClasses = [];
     if (this.state.persons.length <= 2) {
-      classes.push('red');
+      //assinedClasses.push('red');
+      assinedClasses.push(classes.red);
     }
     if (this.state.persons.length <= 1) {
-      classes.push('bold');
+      //assinedClasses.push('bold');
+      assinedClasses.push(classes.bold);
     }
 
     return (
       //<StyleRoot>
-        <div className="App">
+        //<div className="App">
+        <div className={classes.App}>
           <h1>Hello, I'm react App </h1>
-          <p className={classes.join(' ')}>This is really working!!!</p>
-          <button className="button"
+          <p className={assinedClasses.join(' ')}>This is really working!!!</p>
+          <button className={btnClass}
             onClick={this.togglePersonHandler}>Toggle Persons</button>
           {/* <StyledButton alt={this.state.showPersons} onClick={this.togglePersonHandler}>Toggle Persons</StyledButton> */}
           {/* //Button Styling using Radium
