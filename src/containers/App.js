@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 //import {useState} from 'react'
 import classes from './App.css';
-import Person from './Person/Person'
+import Person from '../components/Persons/Person/Person'
 //import Radium, { StyleRoot } from 'radium'
 //import styled from 'styled-components'
-
+//import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
 
 // const StyledButton = styled.button`
 //   background-color: ${props=> props.alt ? 'red' : 'green'};
@@ -102,11 +102,18 @@ class App extends Component {
             this.state.persons.map((person, index) => {
               return (
                 <Person
-                  name={person.name}
-                  age={person.age}
-                  click={() => this.deletePersonHandler(index)}
-                  key={person.id}
-                  changed={(event => this.nameChangedHandler(event, person.id))} />
+                    name={person.name}
+                    age={person.age}
+                    key={person.id}
+                    click={() => this.deletePersonHandler(index)}
+                    changed={(event => this.nameChangedHandler(event, person.id))} />
+                // <ErrorBoundary key={person.id}>
+                //   <Person
+                //     name={person.name}
+                //     age={person.age}
+                //     click={() => this.deletePersonHandler(index)}
+                //     changed={(event => this.nameChangedHandler(event, person.id))} />
+                // </ErrorBoundary>
               );
             })
           }
