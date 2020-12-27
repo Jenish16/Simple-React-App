@@ -15,7 +15,7 @@ class App extends Component {
     }
 
     removeCharHandler = (index) =>{
-        console.log(index)
+       
         const charArr = this.state.name.split('');
         charArr.splice(index,1);
         const text = charArr.join('');
@@ -31,6 +31,7 @@ class App extends Component {
             return (
                 <Char 
                     char={char}
+                    key={index}
                     click={()=>this.removeCharHandler(index)} />
             );
         })
