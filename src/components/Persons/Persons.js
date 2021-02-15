@@ -10,9 +10,16 @@ class Persons extends Component {
 
     shouldComponentUpdate(nextProps,nextState){
         console.log('[Persons.js] shouldComponentUpdate');
-        return true;
-    }
+        if(nextProps.persons !== this.props.persons){
+            return true;  // renders only if there is change in persons
+        }else{
+            return false;
+        
+        }
+    }//Insted of using shouldComponentUpdate we can extend PureComponent which is simple Component with shouldComponentUpdate and props check
+    
 
+    
     getSnapshotBeforeUpdate(prevProps,prevState){
         console.log('[Persons.js] getSnapshotBeforeUpdate');
         return {message : 'Snapshot!!!'};
@@ -38,8 +45,8 @@ class Persons extends Component {
                     key={person.id}
                     click={() => this.props.clicked(index)}
                     changed={(event => this.props.changed(event, person.id))} />
-            )
-        })
+                )
+            })
         ); 
     }
 }

@@ -5,13 +5,14 @@ const cockpit = (props) => {
 
     useEffect(()=>{
         console.log('[Cockpit.js] useEffect');
-        setTimeout(()=>{
-            alert('Saved data to cloud');
+        const timer = setTimeout(()=>{
+            console.log('Saved data to cloud');
         },1000);
         return () => {
+            clearTimeout(timer);
             console.log('[Cockpit.js] cleanup work in useEffect')
         }
-    },[])
+    },[])  // runs only in first render
 
     useEffect(()=>{
         console.log('[Cockpit.js] 2nd useEffect');
@@ -19,7 +20,7 @@ const cockpit = (props) => {
         return () => {
             console.log('[Cockpit.js] cleanup work in 2nd useEffect')
         }
-    })
+    })   //runs at every render
 
     const assinedClasses = [];
     let btnClass = '';
@@ -28,11 +29,11 @@ const cockpit = (props) => {
         btnClass = classes.Red;
     }
 
-    if (props.persons.length <= 2) {
+    if (props.personsLength <= 2) {
 
         assinedClasses.push(classes.red);
     }
-    if (props.persons.length <= 1) {
+    if (props.personsLength <= 1) {
 
         assinedClasses.push(classes.bold);
     }
@@ -46,4 +47,4 @@ const cockpit = (props) => {
         </div>
     )
 }
-export default cockpit;
+export default React.memo(cockpit);  // memo -react will store copy so if input didn't change but parent component updates reacte will return that copy
